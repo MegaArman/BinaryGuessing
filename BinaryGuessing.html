@@ -1,0 +1,144 @@
+ <doctype html></doctype>
+ <html>
+<head>
+	
+<meta charset="UTF-8">
+<link href="save.css" rel="stylesheet" />
+<title>My Binary Guessing Game</title> 
+<!--^ The web page's title in the browser-->
+
+<script langauge = "javascript">
+	var theMax = 1000000;
+	var maxGuesses = 20;
+	var high = theMax;
+	var low = 0;
+	var answer = 0;
+	var numGuesses = 0;
+	var guessWasClicked = 0;
+
+
+function guess()
+{
+	//resets the variables
+	high = theMax;
+	low = 0;
+	answer = 0;
+	numGuesses = 0;
+	guessWasClicked = 0;
+	numGuesses++;
+	guessWasClicked = 1;
+
+	answer = theMax/2;
+	document.getElementById("Output").innerHTML = "Guess # " + numGuesses + " --It's " + (theMax/2)  + "!";
+	//~ document.getElementById("Higher").style.opacity = 1;
+	//~ document.getElementById("Lower").style.opacity = 1;
+}
+
+function setHigh()
+{
+	//~ alert("You clicked high!");
+	if (guessWasClicked == 1 && gameWon() == 0)
+	{
+		
+		low = answer;
+		answer = Math.round((high + low)/2);
+		//alert("Guess # " + numGuesses + " --It's " + answer + "!");
+		numGuesses++;
+		document.getElementById("Output").innerHTML = "Guess # " + numGuesses + " --It's " + answer + "!";
+		gameWon();
+	}
+	else if (guessWasClicked == 0)
+	{
+		alert("You haven't clicked start yet! Dumbass.");
+	}
+}
+
+function setLow()
+{
+	if (guessWasClicked == 1 && gameWon() == 0)
+	{	
+		 high = answer;
+		 answer = Math.round((high + low)/2);
+		 //alert("Guess # " + numGuesses + " --Is it " + answer + "?"); 
+		 numGuesses++;
+		 document.getElementById("Output").innerHTML = ("Guess # " + numGuesses + " --It's " + answer + "!");
+		 gameWon();
+	
+	}
+	else if (guessWasClicked == 0)
+	{
+		alert("You haven't clicked start yet! Dumbass.");
+	}
+	
+}
+function gameWon()
+{
+		if (numGuesses == maxGuesses)
+		{
+			answer = Math.round((high + low)/2);
+			alert("I won! It's " + answer + "!");
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+}
+
+</script>
+
+</head>
+<body>
+<header>
+<nav>
+	<ul>
+		<li><a class = "hoverStyle2" href='#'>Home</a></li>
+		<li><a class = "hoverStyle2" href="game2.html">Different Game</a></li>
+		<li><a class = "hoverStyle2" href ='#'>About </a></li>
+		<li><a class = "hoverStyle2" href ='#'>Contact </a></li>
+	</ul>
+
+</nav>
+</header>
+
+<br />
+<br /><br />
+<!--
+<div class = "row">
+	<div class="col">Col1</div>
+	<div class="col">Col2</div>
+	<div class="col">Col3</div>
+</div>
+-->
+
+
+<h2>My Guessing Game</h2> <br /> <br />
+<form>
+	
+ <font size="4.0"><em>Think of a number from 1 to 1,000,000 and I'll guess
+  it in 20 or less guesses! Just tell me to guess higher or lower if I miss! </em></font> 
+<br /> <br />
+
+<center>
+<input id = "Start" class="hoverStyle" type="button" value="Start/Restart" onclick ="guess()" />
+<br /> <br />
+<input id = "Higher" class="hoverStyle" type="button" value="Guess Higher!" onclick ="setHigh()" /><br /> <br />
+<input id = "Lower" class="hoverStyle" type="button" value="Guess Lower!" onclick ="setLow()" /><br /> <br />
+
+
+<!--
+ <font color="red">This is some text!</font> 
+-->
+<label id = "Output"  for="answers"></label>
+<br /> <br />
+<img src = "http://www.lifed.com/wp-content/uploads/2013/01/question-mark.jpg"  style="width:250px; height:300px;border:0">
+</center>
+<!--
+<p id="Output"></p>
+-->
+</form>
+</body>
+</html>
+
+<br />
+<br />
